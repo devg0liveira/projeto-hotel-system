@@ -1,11 +1,12 @@
 <?php
-namespace Entities\Quarto;
+namespace Hotel\Models\Quartos;
 
-class Simples extends Quarto
+use Hotel\Models\Abstract\Quarto;
+class Suite extends Quarto
 {
     public function getDescricao()
     {
-        return "Quarto Simples - Numero: {$this->numero}, Preço: {$this->preco}";
+        return "Quarto Suíte - Numero: {$this->numero}, Preço: {$this->preco}";
     }
 
     public function reservar()

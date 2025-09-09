@@ -94,7 +94,7 @@
             </label>
         </div>
 
-        <input type="submit" value="Reservar">
+            <a href="reserva.php"><input type="submit" value="Reservar"></a>
     </form>
 </body>
 </html>

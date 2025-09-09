@@ -1,5 +1,7 @@
 <?php
-namespace Entities\Quarto;
+namespace Hotel\Models\Quartos;
+
+use Hotel\Models\Abstract\Quarto;
 class Luxo extends Quarto
 {
     public function getDescricao()

@@ -1,5 +1,5 @@
 <?php
-namespace Entities\Quarto;
+namespace Hotel\Models\Abstract;
 
 abstract class Quarto
 {

@@ -1,15 +1,14 @@
 <?php
-namespace HotelSystem\Entities\Services;
+namespace Hotel\Services;
 
-use Entities\Pessoa\Pessoa;
-use HotelSystem\Entities\Pessoa\Pessoa as PessoaPessoa;
+use Hotel\Models\Abstract\Pessoa;
 
 class Estacionamento implements ServicoInterface {
-    public function calcularPreco(PessoaPessoa $hospede): float {
-        return $hospede->getTipo() === "Juridica" ? 60 : 50;
+    public function calcularPreco(Pessoa $hospede): float {
+        return $hospede->getTipo() === "Juridica" ? 36.00 : 30.00;
     }
-
+    
     public function getDescricao(): string {
-        return "Serviço de Estacionamento";
+        return "Estacionamento VIP";
     }
 }

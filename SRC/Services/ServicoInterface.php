@@ -1,13 +1,9 @@
 <?php
-namespace HotelSystem\Entities\Services;
+namespace Hotel\Services;
 
-
-
-// ADICIONAR: Use statement
-use Entities\Pessoa\Pessoa;
-use HotelSystem\Entities\Pessoa\Pessoa as PessoaPessoa;
+use Hotel\Models\Abstract\Pessoa;
 
 interface ServicoInterface {
-    public function calcularPreco(PessoaPessoa $hospede): float;
+    public function calcularPreco(Pessoa $hospede): float;
     public function getDescricao(): string;
 }

@@ -1,5 +1,6 @@
 <?php
-namespace HotelSystem\Entities\Pessoa;
+namespace Hotel\Models\Abstract;
+
 
 abstract class Pessoa {
     protected $nome;

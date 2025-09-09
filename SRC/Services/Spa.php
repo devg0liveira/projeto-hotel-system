@@ -1,14 +1,13 @@
 <?php
-namespace HotelSystem\Entities\Services;
+namespace Hotel\Services;
 
-use Entities\Pessoa\Pessoa;
-use HotelSystem\Entities\Pessoa\Pessoa as PessoaPessoa;
+use Hotel\Models\Abstract\Pessoa;
 
 class Spa implements ServicoInterface {
-    public function calcularPreco(PessoaPessoa $hospede): float {
-        return $hospede->getTipo() === "Juridica" ? 120 : 100;
+    public function calcularPreco(Pessoa $hospede): float {
+        return $hospede->getTipo() === "Juridica" ? 120.00 : 100.00;
     }
-
+    
     public function getDescricao(): string {
         return "SPA Relaxante";
     }

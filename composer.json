@@ -1,10 +1,10 @@
 {
     "autoload": {
         "psr-4": {
-            "HotelSystem\\": "src/"
+            "Hotel\\": "SRC/"
         }
     },
     "require": {
-        "mpdf/mpdf": "^8.0"
+        "php": ">=8.0"
     }
 }
