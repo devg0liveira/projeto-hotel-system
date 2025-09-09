@@ -94,7 +94,7 @@
             </label>
         </div>
 
-            <a href="reserva.php"><input type="submit" value="Reservar"></a>
+            <a href="src/Models/reserva.php"submit"><input type="button" value="Proximo"</a>
     </form>
 </body>
 </html>
