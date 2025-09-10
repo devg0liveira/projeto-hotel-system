@@ -47,54 +47,61 @@
     </style>
 </head>
 <body>
-    <h2>🏨 Bem-vindo ao Hotel System</h2>
-    <p>Preencha seus dados e escolha uma opção de quarto</p>
+    <h1 class="hotel-title">🏨 Bem-vindo ao Hotel System</h1>
+    <p style="color: white; font-size: 1.1em;">Preencha seus dados e escolha uma opção de quarto</p>
 
-    <form action="quarto.php" method="post">
+    <div class="container">
+        <form action="servicos.php" method="post">
+            <div class="box">
+                <h4>📝 Dados do Cliente</h4>
+                <input type="text" name="nome" placeholder="Nome completo" required><br>
+                <input type="email" name="email" placeholder="E-mail" required>
+            </div>
 
-        <div class="box">
-            <h4>Dados do Cliente</h4>
-            <input type="text" name="nome" placeholder="Nome completo" required><br>
-            <input type="email" name="email" placeholder="E-mail" required>
-        </div>
+            <div class="box">
+                <h4>👤 Tipo de Cliente</h4>
+                <input type="radio" id="pessoa_fisica" name="tipo_pessoa" value="pf" required checked>
+                <label for="pessoa_fisica">
+                    Pessoa Física
+                    <span class="price-detail">(preços normais)</span>
+                </label>
+                <br><br>
+                <input type="radio" id="pessoa_juridica" name="tipo_pessoa" value="pj">
+                <label for="pessoa_juridica">
+                    Pessoa Jurídica
+                    <span class="price-detail">(20% adicional em todos os serviços)</span>
+                </label>
+            </div>
 
-        <div class="box">
-            <h4>Tipo de Cliente</h4>
-            <input type="radio" id="pessoa_fisica" name="tipo_pessoa" value="pf" required checked>
-            <label for="pessoa_fisica">
-                Pessoa Física
-                <span class="price-detail">(preços normais)</span>
-            </label>
-            <br>
-            <input type="radio" id="pessoa_juridica" name="tipo_pessoa" value="pj">
-            <label for="pessoa_juridica">
-                Pessoa Jurídica
-                <span class="price-detail">(20% a mais em todos os quartos)</span>
-            </label>
-        </div>
+            <div class="box">
+                <h4>🛏️ Escolha o Quarto</h4>
+                
+                <input type="radio" id="quarto_simples" name="tipo_quarto" value="simples" required>
+                <label for="quarto_simples">
+                    Quarto Simples - <span class="price">R$ 150/noite</span><br>
+                    <span class="price-detail">PJ: R$ 180/noite</span><br>
+                    <span class="availability">📊 20 quartos disponíveis (101-120)</span>
+                </label>
+                <br><br>
+                
+                <input type="radio" id="suite" name="tipo_quarto" value="suite">
+                <label for="suite">
+                    Suíte - <span class="price">R$ 250/noite</span><br>
+                    <span class="price-detail">PJ: R$ 300/noite</span><br>
+                    <span class="availability">📊 10 suítes disponíveis (201-210)</span>
+                </label>
+                <br><br>
+                
+                <input type="radio" id="luxo" name="tipo_quarto" value="luxo">
+                <label for="luxo">
+                    Suíte Luxo - <span class="price">R$ 400/noite</span><br>
+                    <span class="price-detail">PJ: R$ 480/noite</span><br>
+                    <span class="availability">📊 5 suítes disponíveis (301-305)</span>
+                </label>
+            </div>
 
-        <div class="box">
-            <h4>Escolha o Quarto</h4>
-            <input type="radio" id="quarto_simples" name="tipo_quarto" value="simples" required>
-            <label for="quarto_simples">
-                Quarto Simples - <span class="price">R$ 150/noite</span>
-                <span class="price-detail">PJ: R$ 180/noite</span>
-            </label>
-            <br>
-            <input type="radio" id="suite" name="tipo_quarto" value="suite">
-            <label for="suite">
-                Suíte - <span class="price">R$ 250/noite</span>
-                <span class="price-detail">PJ: R$ 300/noite</span>
-            </label>
-            <br>
-            <input type="radio" id="luxo" name="tipo_quarto" value="luxo">
-            <label for="luxo">
-                Suíte Luxo - <span class="price">R$ 400/noite</span>
-                <span class="price-detail">PJ: R$ 480/noite</span>
-            </label>
-        </div>
-
-            <a href="src/Models/reserva.php"submit"><input type="button" value="Proximo"</a>
-    </form>
+            <input type="submit" value="Próximo: Escolher Serviços ➡️">
+        </form>
+    </div>
 </body>
 </html>
