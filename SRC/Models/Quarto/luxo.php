@@ -1,20 +1,24 @@
 <?php
+// ========== SRC/Models/Quarto/luxo.php ==========
 namespace Hotel\Models\Quartos;
 
 use Hotel\Models\Abstract\Quarto;
+
 class Luxo extends Quarto
 {
-    public function getDescricao()
+    public function __construct()
     {
-        return "Quarto Luxo - Numero: {$this->numero}, Preço: {$this->preco}";
+        parent::__construct('Luxo', 150.00);
     }
 
-    public function reservar()
+    public function getTipoNome(): string
     {
-        if ($this->disponivel) {
-            $this->disponivel = false;
-            return true;
-        }
-        return false;
+        return 'Quarto Luxo';
+    }
+
+    public function getDescricao(): string
+    {
+        $numero = $this->numero ? "#{$this->numero}" : "(número será atribuído)";
+        return "Quarto Luxo {$numero} - R$ " . number_format($this->preco, 2, ',', '.') . "/noite";
     }
 }

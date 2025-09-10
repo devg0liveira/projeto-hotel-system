@@ -9,40 +9,85 @@
             text-align: center;
             font-family: Arial, sans-serif;
             margin: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            width: 70%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         .box {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 15px auto;
-            width: 60%;
-            border-radius: 8px;
-            background: #f9f9f9;
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        .box:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
         .price {
             font-weight: bold;
-            color: green;
+            color: #28a745;
+            font-size: 1.1em;
         }
         .price-detail {
             font-size: 0.9em;
-            color: gray;
+            color: #666;
+        }
+        .availability {
+            font-size: 0.8em;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .unavailable {
+            color: #dc3545;
         }
         input[type="text"], input[type="email"] {
             width: 80%;
-            padding: 8px;
+            padding: 12px;
             margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        input[type="text"]:focus, input[type="email"]:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
         }
         input[type="submit"] {
-            padding: 10px 20px;
-            background: darkblue;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
         input[type="submit"]:hover {
-            background: navy;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .hotel-title {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
         }
     </style>
 </head>
