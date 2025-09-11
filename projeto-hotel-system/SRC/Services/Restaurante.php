@@ -1,34 +1,36 @@
 <?php
-namespace Entities\Services;
+namespace Hotel\Services;
 
-// ADICIONAR: Requires necessários
-require_once __DIR__ . '/../pessoa/pessoa.php';
-require_once __DIR__ . '/ServicoInterface.php';
+use Hotel\Services\ServicoInterface;
+use Hotel\Models\Abstract\Pessoa;
 
-// ADICIONAR: Use statements
-use Entities\Pessoa\Pessoa;
+class Restaurante implements ServicoInterface
+{
+    private string $tipo;
 
-class Restaurante implements ServicoInterface {
-    
-    public function calcularPreco(Pessoa $hospede): float {
-        return $hospede->getTipo() === "Juridica" ? 80 : 70;
+    public function __construct(string $tipo)
+    {
+        $this->tipo = $tipo;
     }
-    
-    public function getDescricao(): string {
-        return "Serviço de Restaurante";
+
+    public function calcularPreco(Pessoa $hospede): float
+    {
+        // Preços fixos para todos os tipos de hóspede
+        return match($this->tipo) {
+            'cafe' => 20.0,
+            'almoco' => 30.0,
+            'jantar' => 30.0,
+            default => 0.0,
+        };
     }
-    
-    // Métodos específicos do restaurante
-    public function fazerReserva(Pessoa $cliente, $dataHora, $numeroPessoas) {
-        return "Reserva feita para " . $cliente->getNome() . 
-               " em " . $dataHora . " para " . $numeroPessoas . " pessoas";
-    }
-    
-    public function cardapioDoDia(): array {
-        return [
-            "Entrada" => "Salada Caesar",
-            "Prato Principal" => "Salmão Grelhado",
-            "Sobremesa" => "Mousse de Chocolate"
-        ];
+
+    public function getDescricao(): string
+    {
+        return match($this->tipo) {
+            'cafe' => 'Café da manhã',
+            'almoco' => 'Almoço',
+            'jantar' => 'Jantar',
+            default => 'Refeição',
+        };
     }
 }
