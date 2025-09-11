@@ -74,6 +74,10 @@ abstract class Quarto
      */
     public function liberar()
     {
+        if ($this->numero === null) {
+            return false; // Quarto não reservado
+        }
+
         require_once __DIR__ . '/../Utils/QuartoPersistence.php';
         $persistence = new \Hotel\Utils\QuartoPersistence();
         

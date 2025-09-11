@@ -114,7 +114,7 @@
                 <input type="radio" id="pessoa_juridica" name="tipo_pessoa" value="pj">
                 <label for="pessoa_juridica">
                     Pessoa Jurídica
-                    <span class="price-detail">(20% adicional em todos os serviços)</span>
+                    <span class="price-detail">(20% adicional nos quartos)</span>
                 </label>
             </div>
 

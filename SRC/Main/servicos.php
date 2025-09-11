@@ -146,10 +146,7 @@
                 <label>
                     <input type="checkbox" name="servicos[]" value="spa" onchange="toggleBox(this)">
                     <strong>🧘 SPA Relaxante</strong><br>
-                    <span class="preco-servico">R$ <?= ($tipo_pessoa == 'pj') ? '120,00' : '100,00' ?></span>
-                    <?php if($tipo_pessoa == 'pj'): ?>
-                        <span class="preco-pj">(PF: R$ 100,00)</span>
-                    <?php endif; ?>
+                    <span class="preco-servico">R$ <?= ($tipo_pessoa == 'pj') ? '100,00' : '100,00' ?></span>
                     <br><small>Massagem relaxante, sauna e hidromassagem</small>
                 </label>
             </div>
@@ -159,10 +156,7 @@
                 <label>
                     <input type="checkbox" name="servicos[]" value="estacionamento" onchange="toggleBox(this)">
                     <strong>🚗 Estacionamento VIP</strong><br>
-                    <span class="preco-servico">R$ <?= ($tipo_pessoa == 'pj') ? '36,00' : '30,00' ?></span>
-                    <?php if($tipo_pessoa == 'pj'): ?>
-                        <span class="preco-pj">(PF: R$ 30,00)</span>
-                    <?php endif; ?>
+                    <span class="preco-servico">R$ <?= ($tipo_pessoa == 'pj') ? '30,00' : '30,00' ?></span>
                     <br><small>Vaga coberta e segura</small>
                 </label>
             </div>
@@ -188,9 +182,6 @@
                         <input type="checkbox" name="servicos[]" value="jantar">
                         Jantar - <strong>R$ 30,00</strong>
                     </label>
-                    <?php if($tipo_pessoa == 'pj'): ?>
-                        <br><small class="preco-pj">* Pessoa Jurídica: +20% em todas as refeições</small>
-                    <?php endif; ?>
                 </div>
             </div>
             
