@@ -6,102 +6,110 @@ use Hotel\Models\Quartos\{Simples, Suite, Luxo};
 use Hotel\Models\Reserva;
 use Hotel\Services\{Spa, Estacionamento, Restaurante};
 
-// === 1. Recebe os dados enviados do formulário ===
+// === 1. Receber dados via POST ===
 $nome = $_POST['nome'] ?? '';
 $email = $_POST['email'] ?? '';
-$tipoPessoa = $_POST['tipo_pessoa'] ?? 'fisica'; // fisica ou juridica
+$tipoPessoa = $_POST['tipo_pessoa'] ?? 'fisica';
 $tipoQuarto = $_POST['quarto'] ?? '';
-$servicosSelecionados = $_POST['servicos'] ?? []; // array de checkboxes
+$servicosSelecionados = $_POST['servicos'] ?? [];
+
+// === 2. Criar Pessoa ===
+if ($tipoPessoa === 'juridica') {
+    $pessoa = new PessoaJuridica($nome, $email);
+} else {
+    $pessoa = new PessoaFisica($nome, $email);
+}
+
+// === 3. Criar Quarto ===
+switch ($tipoQuarto) {
+    case 'simples':
+        $quarto = new Simples();
+        break;
+    case 'suite':
+        $quarto = new Suite();
+        break;
+    case 'luxo':
+        $quarto = new Luxo();
+        break;
+    default:
+        die("Quarto inválido!");
+}
+
+// === 4. Criar Serviços ===
+$servicos = [];
+foreach ($servicosSelecionados as $s) {
+    switch ($s) {
+        case 'spa':
+            $servicos[] = new Spa();
+            break;
+        case 'restaurante':
+            $servicos[] = new Restaurante();
+            break;
+        case 'estacionamento':
+            $servicos[] = new Estacionamento();
+            break;
+    }
+}
+
+// === 5. Criar Reserva ===
+$reserva = new Reserva($pessoa, $quarto, $servicos);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmação da Reserva - Hotel System</title>
+    <title>Confirmação de Reserva</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: white;
+            margin: 30px;
+            line-height: 1.6;
         }
-        .container {
-            background: rgba(255, 255, 255, 0.95);
+        h2, h3 {
             color: #333;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px auto;
-            max-width: 800px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .resumo-box {
-            background: #f8f9fa;
-            border: 2px solid #28a745;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+        ul {
+            list-style-type: square;
         }
-        .erro {
-            background: #f8d7da;
-            border: 2px solid #dc3545;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        .sucesso {
-            background: #d4edda;
-            border: 2px solid #28a745;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        .preco-destaque {
-            font-weight: bold;
-            color: #28a745;
+        .total {
             font-size: 1.2em;
-        }
-        .taxa-pj {
-            color: #dc3545;
-            font-size: 0.9em;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background: #e9ecef;
             font-weight: bold;
-        }
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: bold;
-            margin: 10px 5px;
-            transition: all 0.3s ease;
-        }
-        .btn-primary {
-            background: linear-gradient(45deg, #28a745, #20c997);
-            color: white;
-        }
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: darkgreen;
         }
     </style>
+</head>
+<body>
+    <h2>Confirmação da Reserva</h2>
+
+    <!-- Dados da Pessoa -->
+    <p><strong>Nome:</strong> <?= htmlspecialchars($pessoa->getNome()) ?></p>
+    <p><strong>Email:</strong> <?= htmlspecialchars($pessoa->getEmail()) ?></p>
+
+    <!-- Quarto escolhido -->
+    <p><strong>Quarto escolhido:</strong> 
+        <?= $quarto->getDescricao() ?> - 
+        R$ <?= number_format($quarto->calcularPreco($pessoa), 2, ',', '.') ?>
+    </p>
+
+    <!-- Serviços adicionais -->
+    <h3>Serviços adicionais:</h3>
+    <?php if (!empty($servicos)) : ?>
+        <ul>
+            <?php foreach ($servicos as $servico) : ?>
+                <li>
+                    <?= $servico->getDescricao() ?> - 
+                    R$ <?= number_format($servico->calcularPreco($pessoa), 2, ',', '.') ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else : ?>
+        <p>Nenhum serviço adicional selecionado.</p>
+    <?php endif; ?>
+
+    <!-- Total da Reserva -->
+    <h3>Total da reserva:</h3>
+    <p class="total">
+        R$ <?= number_format($reserva->calcularTotal(), 2, ',', '.') ?>
+    </p>
+</body>
+</html>
